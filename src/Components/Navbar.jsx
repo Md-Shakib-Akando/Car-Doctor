@@ -1,7 +1,11 @@
+"use client";
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 
 const Navbar = () => {
+    const { data: session, status } = useSession();
+
     return (
         <div>
             <div className="  bg-base-100 shadow-sm">
@@ -30,7 +34,16 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <Link href={'/login'} className="btn bg-white text-[#FF3811] text-lg border-[#FF3811] hover:bg-[#FF3811] hover:text-white rounded">Login</Link>
+                        {status == 'authenticated' ? (
+                            <button
+                                onClick={() => signOut({ callbackUrl: '/login' })}
+                                className="btn bg-white text-[#FF3811] text-lg border-[#FF3811] hover:bg-[#FF3811] hover:text-white rounded"
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <Link href={'/login'} className="btn bg-white text-[#FF3811] text-lg border-[#FF3811] hover:bg-[#FF3811] hover:text-white rounded">Login</Link>
+                        )}
                     </div>
                 </div>
             </div>
