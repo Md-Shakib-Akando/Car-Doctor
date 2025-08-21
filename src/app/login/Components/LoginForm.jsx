@@ -1,8 +1,9 @@
-import { FcGoogle } from "react-icons/fc";
+
 import { signIn } from "next-auth/react"
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import SocialLogin from "./SocialLogin";
 export function LoginForm() {
     const router = useRouter();
     const handleSubmit = async (e) => {
@@ -51,14 +52,7 @@ export function LoginForm() {
                 <hr className="flex-grow border-gray-300" />
             </div>
 
-            {/* Social Login */}
-            <div className="flex justify-center space-x-6">
-
-                <button className="p-3 bg-gray-200 rounded-full hover:bg-gray-300 hover:cursor-pointer">
-                    <FcGoogle size={22} />
-                </button>
-            </div>
-
+            <SocialLogin></SocialLogin>
             {/* Footer Text */}
             <p className="text-center mt-6 text-sm text-gray-600">
                 Don't Have an account?{" "}

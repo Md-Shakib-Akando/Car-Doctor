@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 
 import Link from "next/link";
 import { registerUser } from '@/app/actions/auth/registerUser';
+import SocialLogin from '@/app/login/Components/SocialLogin';
 export default function RegisterForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,13 +59,7 @@ export default function RegisterForm() {
                 <hr className="flex-grow border-gray-300" />
             </div>
 
-            {/* Social Login */}
-            <div className="flex justify-center space-x-6">
-
-                <button className="p-3  bg-gray-200 rounded-full hover:bg-gray-300 hover:cursor-pointer">
-                    <FcGoogle size={22} />
-                </button>
-            </div>
+            <SocialLogin></SocialLogin>
 
             {/* Footer Text */}
             <p className="text-center mt-6 text-sm text-gray-600">
