@@ -31,7 +31,7 @@ const Products = async () => {
                                     <h2 className="card-title">{product.title}</h2>
 
                                     <div>
-                                        <p>{product.price}</p>
+                                        <p>${product.price}</p>
                                     </div>
                                 </div>
                                 <p>
