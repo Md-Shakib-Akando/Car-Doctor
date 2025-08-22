@@ -1,6 +1,6 @@
-# Car Doctors
+# Car Doctor
 
-Car Doctors is a full-stack web application that allows users to add products and view detailed information about them. Users can easily browse the product catalog, see essential details, and explore items of interest.
+Car Doctor is a full-stack web application that allows users to add products and view detailed information about them. Users can easily browse the product catalog, see essential details, and explore items of interest.
 
 ---
 
