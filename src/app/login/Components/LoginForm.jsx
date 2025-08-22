@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import SocialLogin from "./SocialLogin";
+import Swal from "sweetalert2";
 export function LoginForm() {
     const router = useRouter();
     const handleSubmit = async (e) => {
@@ -14,11 +15,26 @@ export function LoginForm() {
         const password = form.password.value;
 
         const res = await signIn("credentials", { redirect: false, email, password });
-        if (res?.ok) router.push("/product");
+        if (res?.ok) {
+            Swal.fire({
+                icon: "success",
+                title: "Login Successful",
+                text: "Welcome back!",
+                timer: 2000,
+                showConfirmButton: false,
+            });
+            router.push("/product");
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Login Failed",
+                text: res?.error || "Invalid credentials",
+            });
+        }
     }
     return (
         <form onSubmit={handleSubmit}>
-            {/* Email Input */}
+
             <div className="mb-4">
                 <label className="block text-gray-600 mb-1">Email</label>
                 <input
@@ -29,7 +45,7 @@ export function LoginForm() {
                 />
             </div>
 
-            {/* Password Input */}
+
             <div className="mb-4">
                 <label className="block text-gray-600 mb-1">Password</label>
                 <input
@@ -40,12 +56,12 @@ export function LoginForm() {
                 />
             </div>
 
-            {/* Sign In Button */}
+
             <button className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition hover:cursor-pointer">
                 Sign In
             </button>
 
-            {/* Divider */}
+
             <div className="flex items-center my-6">
                 <hr className="flex-grow border-gray-300" />
                 <span className="px-2 text-gray-400">Or Sign In with</span>
@@ -53,7 +69,7 @@ export function LoginForm() {
             </div>
 
             <SocialLogin></SocialLogin>
-            {/* Footer Text */}
+
             <p className="text-center mt-6 text-sm text-gray-600">
                 Don't Have an account?{" "}
                 <Link href="/Register" className="text-orange-500 font-medium hover:underline">

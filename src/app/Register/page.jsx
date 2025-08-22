@@ -15,7 +15,7 @@ export default function page() {
 
                     <RegisterForm></RegisterForm>
 
-                    {/* Divider */}
+
 
                 </div>
             </div>

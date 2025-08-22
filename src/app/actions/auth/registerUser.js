@@ -16,7 +16,11 @@ export const registerUser = async ({ name, email, password }) => {
             email,
             password: hashPassword,
         });
-        return { acknowledged: result.acknowledged, insertedId: result.insertedId };
+        if (result.acknowledged) {
+            return { success: true }; // ✅ Insert successful
+        } else {
+            return { success: false, error: "Registration failed" };
+        }
     }
 
     return { success: false }; // user already exists

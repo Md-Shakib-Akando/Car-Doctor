@@ -1,23 +1,42 @@
 "use client"
 import React from 'react';
-import { FcGoogle } from "react-icons/fc";
-
 import Link from "next/link";
 import { registerUser } from '@/app/actions/auth/registerUser';
 import SocialLogin from '@/app/login/Components/SocialLogin';
+import Swal from 'sweetalert2';
+import { useRouter } from "next/navigation";
 export default function RegisterForm() {
+    const router = useRouter();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        await registerUser({ name, email, password });
+        const res = await registerUser({ name, email, password });
+        console.log(res);
+        if (res && res.success) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registration Successful',
+                text: 'Your account has been created!',
+                timer: 2000,
+                showConfirmButton: false,
+            });
+            form.reset();
+            setTimeout(() => router.push("/login"), 2000);
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration Failed',
+                text: res?.error || 'Something went wrong!',
+            });
+        }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* Email Input */}
+
             <div className="mb-4">
                 <label className="block text-gray-600 mb-1">Name</label>
                 <input
@@ -37,7 +56,7 @@ export default function RegisterForm() {
                 />
             </div>
 
-            {/* Password Input */}
+
             <div className="mb-4">
                 <label className="block text-gray-600 mb-1">Password</label>
                 <input
@@ -49,7 +68,7 @@ export default function RegisterForm() {
             </div>
 
 
-            {/* Sign In Button */}
+
             <button className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition hover:cursor-pointer">
                 Sign Up
             </button>
@@ -61,7 +80,7 @@ export default function RegisterForm() {
 
             <SocialLogin></SocialLogin>
 
-            {/* Footer Text */}
+
             <p className="text-center mt-6 text-sm text-gray-600">
                 Already have an account?{" "}
                 <Link href="/login" className="text-orange-500 font-medium hover:underline">
