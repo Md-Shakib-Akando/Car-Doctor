@@ -53,13 +53,15 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 npm run dev
 npm run build
 npm run start
+```
+
 ---
 ## 🌐 Route Summary
 
 | Route/Path                 | Access       | Description                              |
 |----------------------------|--------------|------------------------------------------|
 | `/`                        | Public       | Home page                                |
-| `/products`                | Public       | Product          |
+| `/products`                | Public       | Product                                  |
 | `/products/[id]`           | Public       | Product details                          |
 | `/login`                   | Public       | Login page                               |
 | `/register`                | Public       | Signup page                              |
