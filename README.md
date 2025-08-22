@@ -53,7 +53,7 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 npm run dev
 npm run build
 npm run start
-
+---
 ## 🌐 Route Summary
 
 | Route/Path                 | Access       | Description                              |
